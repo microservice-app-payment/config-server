@@ -9,6 +9,7 @@ spring:
         git:
           uri: https://github.com/microservice-app-payment/spring-app-config.git
           clone-on-start: on
+          default-label: master
 
 #eureka:
 #  instance:
