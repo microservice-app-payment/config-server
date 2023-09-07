@@ -1,5 +1,5 @@
 server:
-  port: 9296
+  port: 9000
 spring:
   application:
     name: config-server
@@ -11,11 +11,15 @@ spring:
           clone-on-start: on
           default-label: master
 
-#eureka:
-#  instance:
-#    prefer-ip-address: true
-#  client:
-#    register-with-eureka: on
-#    fetch-registry: on
-#    service-url:
-#      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
+  # Zipkin
+  zipkin:
+    base-url: ${ZIPKIN_URL:http://localhost:9411}
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8000/eureka}
