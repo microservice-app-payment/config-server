@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: payment-service
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/payment-service-db
+    username: root
+    password: Ngochung1809!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: off
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+  # Zipkin
+  zipkin:
+    base-url: ${ZIPKIN_URL:http://localhost:9411}
+server:
+  port: 8082
+
+# Custom Eureka Discovery Service
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: on
+    fetch-registry: on
+    service-url:
+      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8000/eureka}
+
+# Custom Okta Security
+okta:
+  oauth2:
+    issuer: https://dev-23099275.okta.com/oauth2/default
+    audience: api://default
+
+
+# Custom info endpoint
+info:
+  app:
+    name: "Payment Service"
+    description: "Payment Service Application"
+    version: 0.0.1
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus

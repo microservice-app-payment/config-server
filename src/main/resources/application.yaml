@@ -4,14 +4,24 @@ server:
 spring:
   application:
     name: config-server
-
+  profiles:
+    active: native
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/microservice-app-payment/spring-app-config.git
-          clone-on-start: on
-          default-label: master
+        native:
+          search-locations: classpath:/config
+
+#          search-locations: file:///home/ngochung1809/Desktop/microservice-payment/config-server/src/main/resources/config
+
+#        git:
+#          uri: https://github.com/microservice-app-payment/spring-app-config.git
+#          clone-on-start: on
+#          default-label: master
+
+
+encrypt:
+  key: eazybytes
 
 eureka:
   instance:
